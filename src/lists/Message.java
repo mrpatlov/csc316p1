@@ -1,10 +1,12 @@
 package lists;
 
-import lists.ListOfMessages.Node;
-
 public class Message {
 	
 	
+	public Message(int packet, String message) {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * pushes a new packet on top of the stack
 	 * @param packet

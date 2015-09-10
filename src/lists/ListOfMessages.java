@@ -2,7 +2,11 @@ package lists;
 
 public class ListOfMessages {
 	
+	private Node head;
 	
+	public ListOfMessages(){
+		head = null;
+	}
 	/**
 	 * pushes a new Message on top of the stack
 	 * @param messageNumber
@@ -10,6 +14,7 @@ public class ListOfMessages {
 	 * @param message
 	 */
 	public void push(int messageNumber, int packet, String message){
+		head = new Node (messageNumber, packet, message, head);
 		
 	}
 	
@@ -20,20 +25,62 @@ public class ListOfMessages {
 	 * @param message
 	 */
 	public void insert(int messageNumber, int packet, String message){
+		if (head == null || head.MessageNumber < messageNumber){
+			head = new Node (messageNumber, packet, message, head);
+			return;
+		}
+		Node temp = head;
+		while (temp != null){
+			if (temp.MessageNumber == messageNumber){
+				temp.message.insert(packet, message);
+				return;
+			}
+			if (temp.next == null){
+				temp.next = new Node (messageNumber, packet, message, null);
+				return;
+			}
+			if (temp.next.MessageNumber < messageNumber){
+				temp.next = new Node (messageNumber, packet, message, temp.next);
+				return;
+			}
+			else{
+				temp = temp.next;
+			}
+		}
+		//should never get here but throwing an exception just in case
+		throw new IndexOutOfBoundsException();
 		
 	}
 	
 	/**
-	 * returns the top Message
-	 * @return
+	 * returns the top Message and removes it from stack
+	 * @return the top Message from stack
 	 */
 	public Message pop(){
+		Node temp = head;
+		head = head.next;
+		return temp.message;
 		
 	}
 	
+	/**
+	 * returns messageNumber with out removing item from stack
+	 * @return
+	 */
+	public int peek(){
+		return head.MessageNumber;
+	}
+	
 	private class Node{
-		Node node;
-		Message message;
-		int MessageNumber;
+		public Node next;
+		public Message message;
+		public int MessageNumber;
+		
+		public Node (int messageNumber, int packet, String Message, Node next){
+			this.next = next;
+			message = new Message(packet, Message);
+			this.MessageNumber = messageNumber;
+			
+		}
 	}
 }
