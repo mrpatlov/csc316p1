@@ -1,11 +1,11 @@
 package io;
 import java.io.*;
 import java.util.Scanner;
+
+import lists.ListOfMessages;
 /**
- * This class takes the input file and parses it
- * for ListOfMessages
+ * This class reads message data from an input file and returns a list of messages
  * 
- * Then calls OutputFormat to print
  * 
  * The member writing this also needs to do unit tests
  * for this and ListOfMessages
@@ -15,19 +15,72 @@ import java.util.Scanner;
 public class InputParser {
 	
 	private String input_file;
-	private String output_file;
 	
-	public static void main (String[] args){
-		
-	}
-	
+	/**
+	 * Parameterless constructor, if this is executed a FileNotFoundException will be generated.
+	 */
 	public InputParser() {
-		String [] noFiles;
-		this(noFiles);
+		this("");
 	}
-	public InputParser(String[] files) {
-		input_file = files[0];
-		output_file = files[1];
+	
+	/**
+	 * Primary constructor
+	 * @param finput name of input file containing message data
+	 */
+	public InputParser(String finput) {
+		input_file = finput;
+	}
+	
+	/**
+	 * reads message data from input file, generating a list of messages as it does so.
+	 * once all lines in file are processed, the list is returned
+	 * 
+	 * @return a list of all messages contained in input file
+	 * @throws IllegalArgumentException if file line formatting does not follow correct pattern
+	 */
+	public ListOfMessages parseInput() throws IllegalArgumentException {
+		File input = null;
+		Scanner fReader = null;
+		try{
+			input = new File(input_file);
+			fReader = new Scanner(input);
+		} catch (FileNotFoundException e) {
+			System.out.println("Input file specified does not exist!");
+			System.exit(0);
+		}
+		ListOfMessages messages = new ListOfMessages();
+		while(fReader.hasNextLine()){
+			String currentLine = fReader.nextLine();
+			Scanner lineReader = new Scanner(currentLine);
+			int messageNum;
+			int packetNum;
+			String message;
+			if (lineReader.hasNextInt()){
+				messageNum = lineReader.nextInt();
+			} else {
+				lineReader.close();
+				fReader.close();
+				throw new IllegalArgumentException("Bad input file formatting");
+			}
+			if (lineReader.hasNextInt()){
+				packetNum = lineReader.nextInt();
+			} else {
+				lineReader.close();
+				fReader.close();
+				throw new IllegalArgumentException("Bad input file formatting");
+			}
+			if (lineReader.hasNext()){
+				message = lineReader.next();
+			} else {
+				lineReader.close();
+				fReader.close();
+				throw new IllegalArgumentException("Bad input file formatting");
+			}
+			messages.insert(messageNum, packetNum, message);
+			lineReader.close();
+		}
+		fReader.close();
+		return messages;
 	}
 }
 

@@ -11,6 +11,7 @@ package io;
  *
  */
 
-public class OutputFormater {
-
+public class OutputFormatter {
+	//See Receiver class for how this class is called. Either try to follow those method
+	//headers here or rewrite those method calls in Receiver.
 }
