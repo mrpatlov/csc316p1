@@ -9,7 +9,7 @@ import lists.ListOfMessages;
  * This program will read a list of message packets from a text file, arrange them into the proper order
  * and write the messages to a file.
  * 
- * @author Rob
+ * @author John Parsons
  *
  */
 public class Receiver {
