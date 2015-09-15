@@ -50,9 +50,9 @@ public class Message {
 		if(this.head == null){
 			throw new EmptyStackException();
 		}
-		Message temp = head.data;
+		Message tempo = head.data;
 		head = head.next;
-		return temp;
+		return tempo;
 	}
 	
 	private class Node{
