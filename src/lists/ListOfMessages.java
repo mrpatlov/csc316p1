@@ -25,7 +25,7 @@ public class ListOfMessages {
 	 * @param message
 	 */
 	public void insert(int messageNumber, int packet, String message){
-		if (head == null || head.MessageNumber < messageNumber){
+		if (head == null || head.MessageNumber > messageNumber){
 			head = new Node (messageNumber, packet, message, head);
 			return;
 		}
@@ -39,7 +39,7 @@ public class ListOfMessages {
 				temp.next = new Node (messageNumber, packet, message, null);
 				return;
 			}
-			if (temp.next.MessageNumber < messageNumber){
+			if (temp.next.MessageNumber > messageNumber){
 				temp.next = new Node (messageNumber, packet, message, temp.next);
 				return;
 			}

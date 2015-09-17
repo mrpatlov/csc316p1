@@ -1,17 +1,11 @@
 package lists;
 
-import java.util.EmptyStackException;
-
 public class Message {
 	
-	int packet;
-	String message;
 	Node head;
 	
 	public Message(int packet, String message) {
-		this.packet = packet;
-		this.message = message;
-		this.head = null;
+		head = new Node(packet, message, null);
 	}
 
 	/**
@@ -21,7 +15,7 @@ public class Message {
 	 */
 	public void push(int packet, String message){
 		
-		head = new Node(head, message, packet);
+		head = new Node(packet, message, head );
 		
 	}
 	
@@ -31,39 +25,53 @@ public class Message {
 	 * @param message
 	 */
 	public void insert(int packet, String message){
-		Node current = head;
-		if(packet >= head.data.packet || head.equals(null)){
-			head = new Node(head, message, packet);
-		} else {
-			while(packet < current.next.data.packet){
-				current = current.next;
-			}
-			current.next = new Node(current.next, message, packet);
+		if (head == null || head.packet > packet){
+			head = new Node( packet, message, head);
 		}
+		Node temp = head;
+		while (temp != null){
+			if (temp.next == null){
+				temp.next = new Node (packet, message, null);
+				return;
+			}
+			if (temp.next.packet > packet){
+				temp.next = new Node ( packet, message, temp.next);
+				return;
+			}
+			else{
+				temp = temp.next;
+			}
+		}
+		//should never get here but throwing an exception just in case
+		throw new IndexOutOfBoundsException();
+		
 	}
 	
 	/**
 	 * returns the top Message
 	 * @return
 	 */
-	public Message pop(){
-		if(this.head == null){
-			throw new EmptyStackException();
-		}
-		Message tempo = head.data;
+	public String pop(){
+		String temp = head.message;
 		head = head.next;
-		return tempo;
+		return temp;
+		
+	}
+	
+	public int peek(){
+		return head.packet;
 	}
 	
 	private class Node{
 		Node next;
-		Message data;
+		int packet;
+		String message;
 		
-		public Node(Node next, String message, int packet){
-			
+		public Node (int packet, String message, Node next){
 			this.next = next;
-			this.data = new Message(packet, message);
-			
+			this.packet = packet;
+			this.message = message;
 		}
+		
 	}
 }
