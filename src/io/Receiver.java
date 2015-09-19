@@ -30,6 +30,7 @@ public class Receiver {
 			messages = inParse.parseInput();
 		} catch (IllegalArgumentException e) {
 			System.out.println("Bad input file formatting!");
+			System.exit(0);
 		}
 		OutputFormatter outFormat = new OutputFormatter(args[1]);
 		outFormat.writeData(messages);
