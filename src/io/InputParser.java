@@ -70,7 +70,7 @@ public class InputParser {
 				throw new IllegalArgumentException("Bad input file formatting");
 			}
 			if (lineReader.hasNext()){
-				message = lineReader.next();
+				message = lineReader.nextLine();
 			} else {
 				lineReader.close();
 				fReader.close();
