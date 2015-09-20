@@ -66,7 +66,8 @@ public class OutputFormatter {
 							inFile.println(messageText);
 						}
 					} else {
-						inFile.println("WARNING: packet " + packet + " of message " + messageNum + " is missing");
+						inFile.println("WARNING: packet " + (packet - 1) + " of message " + messageNum + " is missing");
+						inFile.println(messageText);
 					}
 					prevPacket = packet;
 					if(message.peek() != -1) {
