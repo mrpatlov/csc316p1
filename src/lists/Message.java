@@ -2,7 +2,7 @@ package lists;
 
 public class Message {
 	
-	Node head;
+	private Node head;
 	
 	public Message(int packet, String message) {
 		head = new Node(packet, message, null);
@@ -52,14 +52,22 @@ public class Message {
 	 * @return
 	 */
 	public String pop(){
+		if(head == null) return null;
 		String temp = head.message;
 		head = head.next;
 		return temp;
 		
 	}
 	
+	/**
+	 * returns packet number of first packet in list
+	 * returns -1 is there are no more packets
+	 * @return the next packet number
+	 */
 	public int peek(){
+		if(head == null) return -1;
 		return head.packet;
+
 	}
 	
 	private class Node{

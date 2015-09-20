@@ -65,9 +65,11 @@ public class ListOfMessages {
 	
 	/**
 	 * returns messageNumber with out removing item from stack
-	 * @return
+	 * returns -1 if list is empty
+	 * @return the message number of first message in list
 	 */
 	public int peek(){
+		if(head == null) return -1;
 		return head.MessageNumber;
 	}
 	

@@ -69,13 +69,21 @@ public class OutputFormatter {
 					prevPacket = packet;
 					//this line throws a NullPointerException after the last packet from the first message is processed.
 					//Might need some way to check if there is a next element.
-					packet = message.peek();
-					messageText = message.pop();
+					if(message.peek() != -1) {
+						packet = message.peek();
+						messageText = message.pop();
+					} else {
+						break;
+					}
 			}
 			inFile.println("--- End Message " + messageNum);
 			inFile.println();
-			messageNum = messages.peek();
-			message = messages.pop();
+			if(messages.peek() != -1) {
+				messageNum = messages.peek();
+				message = messages.pop();
+			} else {
+				break;
+			}
 		}
 		inFile.close();
 	}
