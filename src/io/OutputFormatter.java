@@ -58,16 +58,17 @@ public class OutputFormatter {
 			prevPacket = packet;
 			messageText = message.pop();
 			while(messageText != null) {
-					if(packet != prevPacket + 1 || packet != prevPacket) {
-						//I ran the program with the arguments: test_input.dat test_output.dat, I have the following comments. -Rob
-						//this line appears to be executing every time through the loop even when the warning should not be printed.
-						inFile.println("WARNING: packet " + packet + " of message " + messageNum + " is missing");
-					} else {
-						//this line is never executed even when it should be.
+					if(packet == prevPacket + 1 || packet == prevPacket) {
+						//Changed the loop around to check.
 						inFile.println(messageText);
+						
+					} else {
+						
+						inFile.println("WARNING: packet " + packet + " of message " + messageNum + " is missing");
 					}
 					prevPacket = packet;
 					//this line throws a NullPointerException after the last packet from the first message is processed.
+					//Might need some way to check if there is a next element.
 					packet = message.peek();
 					messageText = message.pop();
 			}
