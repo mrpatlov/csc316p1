@@ -57,6 +57,7 @@ public class ListOfMessages {
 	 * @return the top Message from stack
 	 */
 	public Message pop(){
+		if(head == null) return null;
 		Node temp = head;
 		head = head.next;
 		return temp.message;
