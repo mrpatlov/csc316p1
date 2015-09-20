@@ -59,7 +59,6 @@ public class OutputFormatter {
 			messageText = message.pop();
 			while(messageText != null) {
 					if(packet == prevPacket + 1 || packet == prevPacket) {
-						//Changed the loop around to check.
 						inFile.println(messageText);
 						
 					} else {
@@ -67,8 +66,6 @@ public class OutputFormatter {
 						inFile.println("WARNING: packet " + packet + " of message " + messageNum + " is missing");
 					}
 					prevPacket = packet;
-					//this line throws a NullPointerException after the last packet from the first message is processed.
-					//Might need some way to check if there is a next element.
 					if(message.peek() != -1) {
 						packet = message.peek();
 						messageText = message.pop();
