@@ -59,10 +59,13 @@ public class OutputFormatter {
 			messageText = message.pop();
 			while(messageText != null) {
 					if(packet == prevPacket + 1 || packet == prevPacket) {
-						inFile.println(messageText);
-						
+						if(packet != 1 && prevPacket != 1 && packet == prevPacket) {
+							inFile.println("WARNING: packet 1 of message " + messageNum + " is missing");
+							inFile.println(messageText);
+						} else {
+							inFile.println(messageText);
+						}
 					} else {
-						
 						inFile.println("WARNING: packet " + packet + " of message " + messageNum + " is missing");
 					}
 					prevPacket = packet;
