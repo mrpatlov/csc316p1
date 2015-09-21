@@ -55,27 +55,22 @@ public class OutputFormatter {
 		while(message != null) {
 			inFile.println("--- Message " + messageNum);
 			packet = message.peek();
-			prevPacket = packet;
+			prevPacket = 0;
 			messageText = message.pop();
 			while(messageText != null) {
-					if(packet == prevPacket + 1 || packet == prevPacket) {
-						if(packet != 1 && prevPacket != 1 && packet == prevPacket) {
-							inFile.println("WARNING: packet 1 of message " + messageNum + " is missing");
-							inFile.println(messageText);
-						} else {
-							inFile.println(messageText);
-						}
-					} else {
-						inFile.println("WARNING: packet " + (packet - 1) + " of message " + messageNum + " is missing");
-						inFile.println(messageText);
-					}
-					prevPacket = packet;
-					if(message.peek() != -1) {
-						packet = message.peek();
-						messageText = message.pop();
-					} else {
-						break;
-					}
+				if(packet == prevPacket + 1 || packet == prevPacket) {
+					if(packet != message.peek()) inFile.println(messageText);
+				} else {
+					inFile.println("WARNING: packet " + (packet - 1) + " of message " + messageNum + " is missing");
+					if(packet != message.peek()) inFile.println(messageText);
+				}
+				prevPacket = packet;
+				if(message.peek() != -1) {
+					packet = message.peek();
+					messageText = message.pop();
+				} else {
+					break;
+				}
 			}
 			inFile.println("--- End Message " + messageNum);
 			inFile.println();
