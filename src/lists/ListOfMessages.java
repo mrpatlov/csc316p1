@@ -1,9 +1,17 @@
 package lists;
-
+/**
+ * This class is a list of lists.  Each item in this class
+ * is a stack of packets that makes up a message
+ * @author Jeremy Vanderwall
+ *
+ */
 public class ListOfMessages {
 	
 	private Node head;
 	
+	/**
+	 * Constructor for null list
+	 */
 	public ListOfMessages(){
 		head = null;
 	}
@@ -19,7 +27,7 @@ public class ListOfMessages {
 	}
 	
 	/**
-	 * inserts message in decending order
+	 * inserts message in ascending order
 	 * @param messageNumber
 	 * @param packet
 	 * @param message
@@ -70,15 +78,29 @@ public class ListOfMessages {
 	 * @return the message number of first message in list
 	 */
 	public int peek(){
-		if(head == null) return -1;
+		if(head == null){
+			return -1;
+		}
 		return head.MessageNumber;
 	}
 	
+	/**
+	 * node class for internal linked list
+	 * @author Jeremy Vanderwall
+	 *
+	 */
 	private class Node{
 		public Node next;
 		public Message message;
 		public int MessageNumber;
 		
+		/**
+		 * Constructor for a Node
+		 * @param messageNumber The Message number for the packet
+		 * @param packet the packet number for the packet
+		 * @param Message the string associated with the packet
+		 * @param next Next node in Linked list
+		 */
 		public Node (int messageNumber, int packet, String Message, Node next){
 			this.next = next;
 			message = new Message(packet, Message);

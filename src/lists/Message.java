@@ -1,17 +1,27 @@
 package lists;
 
+/**
+ * An ordered list of packets with their associated strings
+ * @author Alex Michlow
+ *
+ */
 public class Message {
 	
 	private Node head;
 	
+	/**
+	 * Constructor
+	 * @param packet the packet number being processed
+	 * @param message the string associated with the packet
+	 */
 	public Message(int packet, String message) {
 		head = new Node(packet, message, null);
 	}
 
 	/**
 	 * pushes a new packet on top of the stack
-	 * @param packet
-	 * @param message
+	 * @param packet the packet number being processed
+	 * @param message the string associated with the packet
 	 */
 	public void push(int packet, String message){
 		
@@ -20,9 +30,9 @@ public class Message {
 	}
 	
 	/**
-	 * inserts packet in descending order
-	 * @param packet
-	 * @param message
+	 * inserts packet in accending order
+	 * @param packet the packet number being processed
+	 * @param message the string associated with the packet
 	 */
 	public void insert(int packet, String message){
 		if (head == null || head.packet > packet){
@@ -49,7 +59,7 @@ public class Message {
 	
 	/**
 	 * returns the top Message
-	 * @return
+	 * @return the top message in stack
 	 */
 	public String pop(){
 		if(head == null) return null;
