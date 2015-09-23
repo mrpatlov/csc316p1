@@ -33,7 +33,7 @@ public class OutputFormatter {
 
 	/**
 	 * This takes a string and creates a writer to an output file and catches if the file does not exist.
-	 * @param string, the file name for the output file
+	 * @param string the file name for the output file
 	 */
 	public OutputFormatter(String string) {
 		try {
@@ -47,7 +47,7 @@ public class OutputFormatter {
 	/**
 	 * This method takes a list of messages and prints them out to an output file 
 	 * printing errors where needed.
-	 * @param messages, a list of all the messages
+	 * @param messages a list of all the messages
 	 */
 	public void writeData(ListOfMessages messages) {
 		messageNum = messages.peek();

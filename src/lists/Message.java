@@ -80,7 +80,12 @@ public class Message {
 
 	}
 	
-	private class Node{
+	/**
+	 * 
+	 * Internal class for building the linked list
+	 *
+	 */
+	private class Node {
 		Node next;
 		int packet;
 		String message;

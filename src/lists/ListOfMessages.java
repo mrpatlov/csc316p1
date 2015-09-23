@@ -17,9 +17,9 @@ public class ListOfMessages {
 	}
 	/**
 	 * pushes a new Message on top of the stack
-	 * @param messageNumber
-	 * @param packet
-	 * @param message
+	 * @param messageNumber The message Number
+	 * @param packet the packet number
+	 * @param message the message fragment
 	 */
 	public void push(int messageNumber, int packet, String message){
 		head = new Node (messageNumber, packet, message, head);
@@ -28,18 +28,18 @@ public class ListOfMessages {
 	
 	/**
 	 * inserts message in ascending order
-	 * @param messageNumber
-	 * @param packet
-	 * @param message
+	 * @param messageNumber the message number
+	 * @param packet the packet number
+	 * @param message the message fragment
 	 */
 	public void insert(int messageNumber, int packet, String message){
-		if (head == null || head.MessageNumber > messageNumber){
+		if (head == null || head.messageNumber > messageNumber){
 			head = new Node (messageNumber, packet, message, head);
 			return;
 		}
 		Node temp = head;
 		while (temp != null){
-			if (temp.MessageNumber == messageNumber){
+			if (temp.messageNumber == messageNumber){
 				temp.message.insert(packet, message);
 				return;
 			}
@@ -47,7 +47,7 @@ public class ListOfMessages {
 				temp.next = new Node (messageNumber, packet, message, null);
 				return;
 			}
-			if (temp.next.MessageNumber > messageNumber){
+			if (temp.next.messageNumber > messageNumber){
 				temp.next = new Node (messageNumber, packet, message, temp.next);
 				return;
 			}
@@ -81,7 +81,7 @@ public class ListOfMessages {
 		if(head == null){
 			return -1;
 		}
-		return head.MessageNumber;
+		return head.messageNumber;
 	}
 	
 	/**
@@ -89,10 +89,10 @@ public class ListOfMessages {
 	 * @author Jeremy Vanderwall
 	 *
 	 */
-	private class Node{
+	private class Node {
 		public Node next;
 		public Message message;
-		public int MessageNumber;
+		public int messageNumber;
 		
 		/**
 		 * Constructor for a Node
@@ -101,10 +101,10 @@ public class ListOfMessages {
 		 * @param Message the string associated with the packet
 		 * @param next Next node in Linked list
 		 */
-		public Node (int messageNumber, int packet, String Message, Node next){
+		public Node (int messageNumber, int packet, String message, Node next){
 			this.next = next;
-			message = new Message(packet, Message);
-			this.MessageNumber = messageNumber;
+			this.message = new Message(packet, message);
+			this.messageNumber = messageNumber;
 			
 		}
 	}
