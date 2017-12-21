@@ -2,7 +2,7 @@ package lists;
 
 /**
  * An ordered list of packets with their associated strings
- *
+ *Took contributors names out for identity purposes
  */
 public class Message {
 	
