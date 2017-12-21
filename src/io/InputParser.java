@@ -9,7 +9,7 @@ import lists.ListOfMessages;
  * 
  * The member writing this also needs to do unit tests
  * for this and ListOfMessages
- * 
+ * Took contributors names out for identity purposes
  *
  */
 public class InputParser {
