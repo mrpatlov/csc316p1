@@ -2,7 +2,7 @@ package lists;
 /**
  * This class is a list of lists.  Each item in this class
  * is a stack of packets that makes up a message
- *
+ *Took contributors names out for identity purposes
  */
 public class ListOfMessages {
 	
