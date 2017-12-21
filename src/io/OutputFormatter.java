@@ -12,7 +12,7 @@ import lists.Message;
  * 
  * The member doing this class needs to do unit tests for 
  * this class and Message
- *
+ *Took contributors names out for identity purposes
  *
  */
 
